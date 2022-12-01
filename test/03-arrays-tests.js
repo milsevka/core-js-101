@@ -833,10 +833,12 @@ describe('03-arrays-tasks', () => {
       }, {
         arr: [1, 2, 3],
         expected: [3, 2, 1],
-      }, {
+      },
+      {
         arr: [1, 2, 3, 4],
         expected: [3, 4, 1, 2],
-      }, {
+      },
+      {
         arr: [1, 2, 3, 4, 5],
         expected: [4, 5, 3, 1, 2],
       },

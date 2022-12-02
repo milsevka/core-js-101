@@ -128,8 +128,11 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  return !((rect2.top > rect1.height && rect2.left < rect1.width)
+    || (rect2.top < rect1.height && rect2.left > rect1.width)
+    || (rect2.left > rect1.width && rect2.top < rect1.height)
+    || (rect2.left > rect1.width && rect2.top > rect1.height));
 }
 
 
@@ -159,8 +162,10 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const resRad = circle.radius;
+  const sqrt = Math.sqrt((point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2);
+  return resRad > sqrt;
 }
 
 
@@ -175,8 +180,9 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const find = str.split('');
+  return find.find((elem) => str.indexOf(elem) === str.lastIndexOf(elem));
 }
 
 
@@ -202,8 +208,11 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const arr = [a, b].sort();
+  const start = isStartIncluded ? '[' : '(';
+  const end = isEndIncluded ? ']' : ')';
+  return `${start}${arr[0]}, ${arr[1]}${end}`;
 }
 
 
@@ -332,8 +341,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -351,6 +360,14 @@ function toNaryString(/* num, n */) {
  */
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
+  // const arr = pathes.join('').split('/');
+  // const newArr = [];
+  // for (let i = 0; i < arr.length; i += 1) {
+  //   if (!newArr.includes[arr[i]]) {
+  //     newArr.push(arr[i]);
+  //   }
+  // }
+  // return newArr;
 }
 
 
@@ -372,8 +389,22 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const m1row = m1.length;
+  const m1col = m1[0].length;
+  const m2row = m2.length;
+  const m2col = m2[0].length;
+  const result = [];
+  if (m1col !== m2row) return false;
+  for (let i = 0; i < m1row; i += 1) result[i] = [];
+  for (let k = 0; k < m2col; k += 1) {
+    for (let i = 0; i < m1row; i += 1) {
+      let t = 0;
+      for (let j = 0; j < m2row; j += 1) t += m1[i][j] * m2[j][k];
+      result[i][k] = t;
+    }
+  }
+  return result;
 }
 
 

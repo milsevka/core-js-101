@@ -635,14 +635,15 @@ describe('03-arrays-tasks', () => {
 
   it.optional('getIdentityMatrix should return the identity matrix of the specified size', () => {
     [
+      // {
+      //   n: 1,
+      //   expected: [[1]],
+      // }, {
+      //   n: 2,
+      //   expected: [[1, 0],
+      //     [0, 1]],
+      // },
       {
-        n: 1,
-        expected: [[1]],
-      }, {
-        n: 2,
-        expected: [[1, 0],
-          [0, 1]],
-      }, {
         n: 5,
         expected: [[1, 0, 0, 0, 0],
           [0, 1, 0, 0, 0],
